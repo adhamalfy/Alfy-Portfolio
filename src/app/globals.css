@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb;
+  --background: #ffffff;
   --foreground: #171717;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .light {
-  --background: #f9fafb;
+  --background: #ffffff;
   --foreground: #171717;
 }
 
@@ -24,8 +24,20 @@ html {
   scroll-behavior: smooth;
 }
 
+html.light,
+html.light body {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+html.dark,
+html.dark body {
+  background: #0F1419 !important;
+  background-color: #0F1419 !important;
+}
+
 body {
-  background: var(--background);
+  background: #ffffff !important;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   line-height: 1.7;
@@ -35,21 +47,118 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.dark body {
+  background: #0F1419 !important;
+}
+
+/* Force syntax highlighter background in light mode */
+.light .code-content pre[class*="language-"],
+.light .code-content code[class*="language-"],
+.light .code-content pre,
+.light .code-content code,
+.light .code-content .prism-code,
+.light .code-content .react-syntax-highlighter-line-number,
+.light .code-content .linenumber {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #374151 !important;
+}
+
+/* Force line numbers to be visible in light mode */
+.light .code-content .react-syntax-highlighter-line-number {
+  color: #9ca3af !important;
+  background: #ffffff !important;
+}
+
+/* Force all syntax tokens to have proper colors in light mode */
+.light .code-content .token.keyword {
+  color: #7c3aed !important;
+}
+
+.light .code-content .token.string {
+  color: #059669 !important;
+}
+
+.light .code-content .token.comment {
+  color: #6b7280 !important;
+}
+
+.light .code-content .token.number {
+  color: #dc2626 !important;
+}
+
+.light .code-content .token.function {
+  color: #2563eb !important;
+}
+
+.light .code-content .token.punctuation {
+  color: #374151 !important;
+}
+
+.light .code-content .token.operator {
+  color: #374151 !important;
+}
+
+.light .code-content .token.property {
+  color: #1f2937 !important;
+}
+
+/* Override any dark backgrounds from syntax highlighter */
+.light .code-content * {
+  background-color: #ffffff !important;
+}
+
+/* Additional targeting for react-syntax-highlighter elements */
+.light .code-content pre > code,
+.light .code-content .language-javascript,
+.light .code-content [class*="language-"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Ensure no dark theme styles leak through */
+.light .code-content .prism-code pre,
+.light .code-content .prism-code code,
+.light .code-content div[class*="language-"] {
+  background: #ffffff !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111111;
+  background: #ffffff;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
 }
 
 ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+.dark ::-webkit-scrollbar-thumb {
   background: #333333;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #555555;
 }
 
