@@ -1,190 +1,114 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
+import { useRef } from "react";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useTheme } from "@/contexts/ThemeContext";
+import Image from "next/image";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const backgroundRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create the main timeline
-      const tl = gsap.timeline();
-
-      // Animate background
-      gsap.set(backgroundRef.current, { opacity: 0 });
-      gsap.to(backgroundRef.current, {
-        opacity: 1,
-        duration: 2,
-        ease: "power2.out"
-      });
-
-      // Animate title with typewriter effect
-      gsap.set(titleRef.current, { opacity: 0, y: 50 });
-      tl.to(titleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      })
-      .to(titleRef.current, {
-        text: {
-          value: "Full Stack Developer",
-          delimiter: ""
-        },
-        duration: 2,
-        ease: "none"
-      }, "-=0.5");
-
-      // Animate subtitle
-      gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
-      tl.to(subtitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=1");
-
-      // Animate CTA buttons
-      gsap.set(ctaRef.current?.children || [], { opacity: 0, y: 20, scale: 0.8 });
-      tl.to(ctaRef.current?.children || [], {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.2,
-        ease: "back.out(1.7)"
-      }, "-=0.5");
-
-      // Floating animation for the background elements
-      gsap.to(".floating-circle", {
-        y: -20,
-        duration: 3,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-        stagger: 0.5
-      });
-
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const scrollToProjects = () => {
-    const element = document.querySelector("#projects");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  return (
-    <div ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div 
-        ref={backgroundRef}
-        className="absolute inset-0 grid-bg"
-      >
-        {/* Floating geometric shapes */}
-        <div className="floating-circle absolute top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
-        <div className="floating-circle absolute top-40 right-32 w-24 h-24 bg-green-500/10 rounded-full blur-xl"></div>
-        <div className="floating-circle absolute bottom-32 left-40 w-28 h-28 bg-purple-500/10 rounded-full blur-xl"></div>
-        <div className="floating-circle absolute bottom-20 right-20 w-36 h-36 bg-pink-500/10 rounded-full blur-xl"></div>
-      </div>
-
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black/90 to-black/80"></div>
-
-      {/* Hero Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <h1 
-            ref={titleRef}
-            className="text-6xl md:text-8xl lg:text-9xl font-bold text-gradient mb-6"
-          >
-            Alfy
-          </h1>
+  const { theme } = useTheme();return (
+    <section 
+      id="home" 
+      className={`relative min-h-screen flex items-center justify-center transition-all duration-500 ${
+        theme === 'dark' 
+          ? 'bg-[#0F1419]' 
+          : 'bg-gray-50'
+      }`}
+    >      <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-screen py-8 lg:py-0">
           
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-white/90 mb-8">
-            <span 
-              ref={subtitleRef}
-              className="inline-block"
+          {/* Left Side - Profile Image Only */}
+          <div className="relative flex justify-center lg:justify-start order-2 lg:order-1">
+            {/* Profile Image */}
+            <div className="relative w-full max-w-xs sm:max-w-sm">
+              <div className={`relative w-64 h-80 sm:w-72 sm:h-96 lg:w-72 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border ${
+                theme === 'dark' 
+                  ? 'border-gray-600/40 bg-gray-800/30' 
+                  : 'border-gray-300/40 bg-white/30'
+              }`}>
+                {/* Your actual image */}
+                <Image 
+                  src="/assets/hero/me.png" 
+                  alt="Alfy - Frontend Developer"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+            </div>
+          </div>          {/* Right Side - Code Box with All Text */}
+          <div className="relative w-full order-1 lg:order-2">
+            <div 
+              className={`backdrop-blur-sm border rounded-2xl shadow-2xl overflow-hidden w-full ${
+                theme === 'dark'
+                  ? 'bg-gray-900/95 border-gray-600/50'
+                  : 'bg-white/95 border-gray-300/50'
+              }`}
             >
-              Creating Digital Experiences
-            </span>
-          </h2>
-        </motion.div>
+              {/* Code Editor Header */}
+              <div className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b ${
+                theme === 'dark'
+                  ? 'bg-gray-800/60 border-gray-600/50'
+                  : 'bg-gray-100/60 border-gray-300/50'
+              }`}>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="flex space-x-1.5 sm:space-x-2">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-red-500 rounded-full shadow-sm"></div>
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-yellow-500 rounded-full shadow-sm"></div>
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full shadow-sm"></div>
+                  </div>
+                  <span className={`text-xs sm:text-sm font-semibold ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
+                    About Me
+                  </span>
+                </div>
+                <div className={`text-xs font-medium ${
+                  theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  javascript
+                </div>
+              </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
-        >
-          Passionate about building modern, responsive, and user-friendly applications
-          using the latest technologies including React, Next.js, and cutting-edge animation libraries.
-        </motion.p>
+              {/* Code Content with Personal Info */}
+              <div className="code-content p-0">
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={theme === 'dark' ? vscDarkPlus : prism}
+                  customStyle={{
+                    margin: 0,
+                    padding: '1rem 1rem 1.5rem',
+                    background: 'transparent',
+                    fontSize: '0.75rem',
+                    lineHeight: '1.5',
+                    height: 'auto'
+                  }}
+                  showLineNumbers={true}
+                  codeTagProps={{
+                    style: {
+                      fontSize: '0.8rem',
+                      lineHeight: '1.6'
+                    }
+                  }}
+                >
+                  {`const developer = {
+  name: "Alfy",
+  role: "Frontend Developer", 
+  skills: ["React", "Next.js", "TypeScript"],
+  status: "Building amazing web experiences"
+};
 
-        {/* CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <motion.button
-            onClick={scrollToProjects}
-            className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="relative z-10">View My Work</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </motion.button>
-
-          <motion.button
-            onClick={scrollToContact}
-            className="group relative px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:border-blue-400 hover:bg-blue-400/10"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="relative z-10">Get In Touch</span>
-          </motion.button>
+console.log(\`Hi, I'm \${developer.name} 👋\`);
+console.log(\`\${developer.role} | \${developer.status}\`);`}
+                </SyntaxHighlighter>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-white/60 rounded-full mt-2"
-            />
-          </motion.div>
-        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
