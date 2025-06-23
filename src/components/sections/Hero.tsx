@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
-
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(TextPlugin);
-}
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
