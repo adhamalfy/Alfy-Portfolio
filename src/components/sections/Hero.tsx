@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useTheme } from "@/contexts/ThemeContext";
@@ -8,24 +9,42 @@ import Image from "next/image";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();  return (
-    <section 
-      id="home"      className={`relative min-h-screen flex items-center justify-center transition-all duration-500 ${
+  const { theme } = useTheme();
+
+  return (
+    <motion.section 
+      id="home"
+      className={`relative min-h-screen flex items-center justify-center transition-all duration-500 ${
         theme === 'dark' 
           ? 'bg-[#0F1419]' 
           : 'bg-white'
       }`}
-    ><div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, staggerChildren: 0.3 }}
+    >
+      <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-screen py-8 lg:py-0">
           
           {/* Left Side - Profile Image Only */}
-          <div className="relative flex justify-center lg:justify-start order-2 lg:order-1">
+          <motion.div 
+            className="relative flex justify-center lg:justify-start order-2 lg:order-1"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             {/* Profile Image */}
-            <div className="relative w-full max-w-xs sm:max-w-sm">              <div className={`relative w-64 h-80 sm:w-72 sm:h-96 lg:w-72 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border ${
-                theme === 'dark' 
-                  ? 'border-gray-600/40 bg-gray-800/30' 
-                  : 'border-slate-300/60 bg-white/80 shadow-blue-100/50'
-              }`}>
+            <div className="relative w-full max-w-xs sm:max-w-sm">
+              <motion.div 
+                className={`relative w-64 h-80 sm:w-72 sm:h-96 lg:w-72 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border ${
+                  theme === 'dark' 
+                    ? 'border-gray-600/40 bg-gray-800/30' 
+                    : 'border-slate-300/60 bg-white/80 shadow-blue-100/50'
+                }`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
                 {/* Your actual image */}
                 <Image 
                   src="/assets/hero/me.png" 
@@ -34,10 +53,17 @@ const Hero = () => {
                   className="object-cover object-center"
                   priority
                 />
-              </div>
+              </motion.div>
             </div>
-          </div>          {/* Right Side - Code Box with All Text */}
-          <div className="relative w-full order-1 lg:order-2">            <div 
+          </motion.div>
+
+          {/* Right Side - Code Box with All Text */}
+          <motion.div 
+            className="relative w-full order-1 lg:order-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          ><div 
               className={`backdrop-blur-sm border rounded-2xl shadow-2xl overflow-hidden w-full ${
                 theme === 'dark'
                   ? 'bg-gray-900/95 border-gray-600/50'
@@ -104,12 +130,11 @@ console.log(\`Hi, I'm \${developer.name} 👋\`);
 console.log(\`\${developer.role} | \${developer.status}\`);`}
                   </SyntaxHighlighter>
                 </div>
-              </div>
-            </div>
-          </div>
+              </div>            </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
