@@ -2,6 +2,7 @@
 
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useState, useEffect, useCallback } from "react";
@@ -34,10 +35,10 @@ export default function Home() {
       <main 
         className={`relative min-h-screen transition-all duration-500 ${
           theme === 'dark' ? 'bg-[#0F1419]' : 'bg-white'
-        } ${showOverlay ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-      >
+        } ${showOverlay ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}      >
         <Navigation />
         <Hero />
+        <About />
       </main>
     </>
   );
