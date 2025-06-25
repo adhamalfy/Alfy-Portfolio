@@ -3,6 +3,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
 import Certifications from "@/components/sections/Certifications";
 import Techniques from "@/components/sections/Techniques";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -42,6 +43,7 @@ export default function Home() {
         <About />
         <Certifications />
         <Techniques />
+        <Projects />
       </main>
     </>
   );
