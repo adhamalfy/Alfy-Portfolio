@@ -178,9 +178,8 @@ const ExperienceTimeline = () => {
   });
     // Transform scroll progress to tube fill percentage (0% to 100%)
   const tubeProgress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  
-  // Transform scroll progress to move the spinner from top to bottom with the filling
-  const spinnerPosition = useTransform(scrollYProgress, [0, 1], [20, 550]);
+    // Transform scroll progress to move the spinner from top to bottom with the filling
+  const spinnerPosition = useTransform(scrollYProgress, [0, 1], [20, 450]);
   
   // Transform scroll progress to rotate the spinner with scroll
   const spinnerRotation = useTransform(scrollYProgress, [0, 1], [0, 720]); // 2 full rotations
@@ -240,129 +239,234 @@ const ExperienceTimeline = () => {
               }}
             />
           </div>
-        </motion.div>        {/* Extra Large Vertical Tube with scroll-based filling from top to bottom */}        <div className="relative flex flex-col items-center">
-          {/* Outer tube - extra large and prominent */}
-          <div 
-            ref={tubeRef}
-            className={`relative w-24 h-[600px] rounded-full border-4 shadow-2xl overflow-hidden ${
-              theme === 'dark' 
-                ? 'border-gray-600/80 bg-gray-800/60 shadow-gray-900/50' 
-                : 'border-gray-300 bg-gray-100/60 shadow-gray-300/30'
-            }`}>
-            {/* Scroll-based inner filling from top to bottom - matching Hero section gradients */}
+        </motion.div>        {/* Dual Timeline Container - Two tubes side by side */}
+        <div className="relative flex flex-row items-start justify-center gap-8">
+          
+          {/* Avnology Timeline */}
+          <div className="flex flex-col items-center">
+            {/* Avnology Header */}
             <motion.div
-              className={`absolute top-0 left-0 right-0 rounded-full ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-b from-blue-500 via-blue-400 to-purple-400' 
-                  : 'bg-gradient-to-b from-blue-600 via-blue-500 to-purple-500'
-              }`}
-              style={{
-                height: tubeProgress,
-                maxHeight: '100%',
-                transformOrigin: 'top',
-                boxShadow: theme === 'dark' 
-                  ? 'inset 0 0 30px rgba(59, 130, 246, 0.4)' 
-                  : 'inset 0 0 30px rgba(59, 130, 246, 0.3)'
-              }}
-            />            {/* Enhanced CSS Pinwheel Spinner - inside tube, perfectly centered with scroll rotation */}
-            <motion.div 
-              ref={spinnerRef}
-              className="absolute w-16 h-16 z-20"
-              style={{
-                top: spinnerPosition,
-                left: 'calc(50% - 32px)',
-                transform: 'none',
-                rotate: spinnerRotation
-              }}
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
             >
-              <div className="relative w-full h-full">
-                {/* Top-right petal */}
-                <div 
-                  className="absolute top-0 right-0 w-8 h-8 rounded-tl-full"
-                  style={{
-                    background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                    transformOrigin: 'bottom left',
-                    boxShadow: '0 0 15px rgba(59, 130, 246, 0.8)'
-                  }}
-                />
-                {/* Bottom-right petal */}
-                <div 
-                  className="absolute bottom-0 right-0 w-8 h-8 rounded-bl-full"
-                  style={{
-                    background: 'linear-gradient(45deg, #8b5cf6, #ec4899)',
-                    transformOrigin: 'top left',
-                    boxShadow: '0 0 15px rgba(139, 92, 246, 0.8)'
-                  }}
-                />
-                {/* Bottom-left petal */}
-                <div 
-                  className="absolute bottom-0 left-0 w-8 h-8 rounded-br-full"
-                  style={{
-                    background: 'linear-gradient(315deg, #ec4899, #06b6d4)',
-                    transformOrigin: 'top right',
-                    boxShadow: '0 0 15px rgba(236, 72, 153, 0.8)'
-                  }}
-                />
-                {/* Top-left petal */}
-                <div 
-                  className="absolute top-0 left-0 w-8 h-8 rounded-tr-full"
-                  style={{
-                    background: 'linear-gradient(225deg, #06b6d4, #3b82f6)',
-                    transformOrigin: 'bottom right',
-                    boxShadow: '0 0 15px rgba(6, 182, 212, 0.8)'
-                  }}
-                />
-                {/* Center dot */}
-                <div 
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white"
-                  style={{
-                    boxShadow: '0 0 10px rgba(255, 255, 255, 1)'
-                  }}
-                />
-              </div>
+              <h4 className={`text-xl md:text-2xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Avnology
+              </h4>
+              <p className={`text-sm font-medium ${
+                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+              }`}>
+                March 2025 - Present
+              </p>
+              <p className={`text-xs mt-1 ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                Frontend Developer
+              </p>
             </motion.div>
-            
-            {/* Enhanced shimmer effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-transparent"
-              animate={isInView ? {
-                y: ['100%', '-100%']
-              } : {}}
-              transition={{
-                duration: 3,
-                delay: 1,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatDelay: 2
-              }}
-            />          </div>
 
-          {/* Company Info - enhanced styling */}
-          <motion.div
-            className="mt-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-          >
-            <h4 className={`text-2xl md:text-3xl font-bold mb-3 ${
-              theme === 'dark' ? 'text-white' : 'text-gray-900'
-            }`}>
-              Avnology
-            </h4>
-            <p className={`text-lg font-medium ${
-              theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-            }`}>
-              March 2025 - Present
-            </p>
-            <p className={`text-base mt-2 ${
-              theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-              Frontend Developer
-            </p>
-          </motion.div>
+            {/* Avnology Tube */}
+            <div 
+              ref={tubeRef}
+              className={`relative w-20 h-[500px] rounded-full border-4 shadow-2xl overflow-hidden ${
+                theme === 'dark' 
+                  ? 'border-gray-600/80 bg-gray-800/60 shadow-gray-900/50' 
+                  : 'border-gray-300 bg-gray-100/60 shadow-gray-300/30'
+              }`}>
+              {/* Scroll-based inner filling from top to bottom */}
+              <motion.div
+                className={`absolute top-0 left-0 right-0 rounded-full ${
+                  theme === 'dark' 
+                    ? 'bg-gradient-to-b from-blue-500 via-blue-400 to-purple-400' 
+                    : 'bg-gradient-to-b from-blue-600 via-blue-500 to-purple-500'
+                }`}
+                style={{
+                  height: tubeProgress,
+                  maxHeight: '100%',
+                  transformOrigin: 'top',
+                  boxShadow: theme === 'dark' 
+                    ? 'inset 0 0 20px rgba(59, 130, 246, 0.4)' 
+                    : 'inset 0 0 20px rgba(59, 130, 246, 0.3)'
+                }}
+              />
+
+              {/* Spinner for Avnology */}
+              <motion.div 
+                ref={spinnerRef}
+                className="absolute w-14 h-14 z-20"
+                style={{
+                  top: spinnerPosition,
+                  left: 'calc(50% - 28px)',
+                  transform: 'none',
+                  rotate: spinnerRotation
+                }}
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="relative w-full h-full">
+                  {/* Top-right petal */}
+                  <div 
+                    className="absolute top-0 right-0 w-7 h-7 rounded-tl-full"
+                    style={{
+                      background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                      transformOrigin: 'bottom left',
+                      boxShadow: '0 0 15px rgba(59, 130, 246, 0.8)'
+                    }}
+                  />
+                  {/* Bottom-right petal */}
+                  <div 
+                    className="absolute bottom-0 right-0 w-7 h-7 rounded-bl-full"
+                    style={{
+                      background: 'linear-gradient(45deg, #8b5cf6, #ec4899)',
+                      transformOrigin: 'top left',
+                      boxShadow: '0 0 15px rgba(139, 92, 246, 0.8)'
+                    }}
+                  />
+                  {/* Bottom-left petal */}
+                  <div 
+                    className="absolute bottom-0 left-0 w-7 h-7 rounded-br-full"
+                    style={{
+                      background: 'linear-gradient(315deg, #ec4899, #06b6d4)',
+                      transformOrigin: 'top right',
+                      boxShadow: '0 0 15px rgba(236, 72, 153, 0.8)'
+                    }}
+                  />
+                  {/* Top-left petal */}
+                  <div 
+                    className="absolute top-0 left-0 w-7 h-7 rounded-tr-full"
+                    style={{
+                      background: 'linear-gradient(225deg, #06b6d4, #3b82f6)',
+                      transformOrigin: 'bottom right',
+                      boxShadow: '0 0 15px rgba(6, 182, 212, 0.8)'
+                    }}
+                  />
+                  {/* Center dot */}
+                  <div 
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white"
+                    style={{
+                      boxShadow: '0 0 10px rgba(255, 255, 255, 1)'
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Black Horse Timeline */}
+          <div className="flex flex-col items-center">
+            {/* Black Horse Header */}
+            <motion.div
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
+            >
+              <h4 className={`text-xl md:text-2xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Black Horse
+              </h4>
+              <p className={`text-sm font-medium ${
+                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+              }`}>
+                July 2024 - Present
+              </p>
+              <p className={`text-xs mt-1 ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                Frontend Instructor
+              </p>
+            </motion.div>
+
+            {/* Black Horse Tube */}
+            <div 
+              className={`relative w-20 h-[500px] rounded-full border-4 shadow-2xl overflow-hidden ${
+                theme === 'dark' 
+                  ? 'border-gray-600/80 bg-gray-800/60 shadow-gray-900/50' 
+                  : 'border-gray-300 bg-gray-100/60 shadow-gray-300/30'
+              }`}>
+              {/* Scroll-based inner filling from top to bottom */}
+              <motion.div
+                className={`absolute top-0 left-0 right-0 rounded-full ${
+                  theme === 'dark' 
+                    ? 'bg-gradient-to-b from-purple-500 via-pink-400 to-blue-400' 
+                    : 'bg-gradient-to-b from-purple-600 via-pink-500 to-blue-500'
+                }`}
+                style={{
+                  height: tubeProgress,
+                  maxHeight: '100%',
+                  transformOrigin: 'top',
+                  boxShadow: theme === 'dark' 
+                    ? 'inset 0 0 20px rgba(147, 51, 234, 0.4)' 
+                    : 'inset 0 0 20px rgba(147, 51, 234, 0.3)'
+                }}
+              />
+
+              {/* Spinner for Black Horse */}
+              <motion.div 
+                className="absolute w-14 h-14 z-20"
+                style={{
+                  top: spinnerPosition,
+                  left: 'calc(50% - 28px)',
+                  transform: 'none',
+                  rotate: spinnerRotation
+                }}
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="relative w-full h-full">
+                  {/* Top-right petal */}
+                  <div 
+                    className="absolute top-0 right-0 w-7 h-7 rounded-tl-full"
+                    style={{
+                      background: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
+                      transformOrigin: 'bottom left',
+                      boxShadow: '0 0 15px rgba(139, 92, 246, 0.8)'
+                    }}
+                  />
+                  {/* Bottom-right petal */}
+                  <div 
+                    className="absolute bottom-0 right-0 w-7 h-7 rounded-bl-full"
+                    style={{
+                      background: 'linear-gradient(45deg, #ec4899, #06b6d4)',
+                      transformOrigin: 'top left',
+                      boxShadow: '0 0 15px rgba(236, 72, 153, 0.8)'
+                    }}
+                  />
+                  {/* Bottom-left petal */}
+                  <div 
+                    className="absolute bottom-0 left-0 w-7 h-7 rounded-br-full"
+                    style={{
+                      background: 'linear-gradient(315deg, #06b6d4, #3b82f6)',
+                      transformOrigin: 'top right',
+                      boxShadow: '0 0 15px rgba(6, 182, 212, 0.8)'
+                    }}
+                  />
+                  {/* Top-left petal */}
+                  <div 
+                    className="absolute top-0 left-0 w-7 h-7 rounded-tr-full"
+                    style={{
+                      background: 'linear-gradient(225deg, #3b82f6, #8b5cf6)',
+                      transformOrigin: 'bottom right',
+                      boxShadow: '0 0 15px rgba(59, 130, 246, 0.8)'
+                    }}
+                  />
+                  {/* Center dot */}
+                  <div 
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white"
+                    style={{
+                      boxShadow: '0 0 10px rgba(255, 255, 255, 1)'
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </motion.div>
