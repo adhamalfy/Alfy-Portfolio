@@ -54,11 +54,10 @@ const Techniques = () => {
   return (
     <motion.section 
       ref={techniquesRef}
-      id="techniques"
-      className={`relative min-h-screen py-20 transition-all duration-500 ${
+      id="techniques"      className={`relative min-h-screen py-20 transition-all duration-500 ${
         theme === 'dark' 
-          ? 'bg-gradient-to-br from-[#0F1419] via-[#1a1f2e] to-[#0F1419]' 
-          : 'bg-gradient-to-br from-white via-gray-50 to-white'
+          ? 'bg-[#0F1419]' 
+          : 'bg-white'
       }`}
       style={{
         opacity,
