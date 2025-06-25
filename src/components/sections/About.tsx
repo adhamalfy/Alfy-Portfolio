@@ -115,41 +115,41 @@ const About = () => {
               }`}>
                 My Journey
               </h3>
-              
-              <div className="space-y-8">
+                <div className="space-y-8">
                 <p className={`text-lg md:text-xl leading-relaxed ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
                   Hi there! I&apos;m <span className={`font-semibold ${
                     theme === 'dark' ? 'text-white' : 'text-gray-900'
-                  }`}>Adham Elalfy</span>, a passionate frontend developer with over 2 years of experience creating 
-                  digital experiences that matter. My journey in web development started with a simple curiosity 
-                  about how websites work, and it has evolved into a deep passion for crafting beautiful, 
-                  functional, and user-centric applications.
+                  }`}>Adham Elalfy</span>, a passionate frontend developer with over 2 years of hands-on experience 
+                  building modern web applications. My professional journey has been shaped by working with 
+                  innovative companies that value quality and cutting-edge technology.
                 </p>
 
                 <p className={`text-lg md:text-xl leading-relaxed ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Throughout my career, I&apos;ve had the privilege of working with well-known brands and agencies, 
-                  where I&apos;ve honed my skills in modern web technologies. I specialize in React, Next.js, and 
-                  TypeScript, always staying up-to-date with the latest industry trends and best practices.
+                  Currently, I&apos;m working as a <span className={`font-semibold ${
+                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                  }`}>Frontend Developer at Avnology</span>, where I focus on creating exceptional user experiences 
+                  using React, Next.js, and TypeScript. I specialize in building responsive, performant applications 
+                  that deliver real value to users.
+                </p>                <p className={`text-lg md:text-xl leading-relaxed ${
+                  theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Alongside my development work, I serve as a <span className={`font-semibold ${
+                    theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
+                  }`}>Frontend Instructor at Black Horse</span>, where I teach frontend technologies and web 
+                  development fundamentals. This teaching role has strengthened my communication skills and 
+                  deepened my understanding of core concepts by explaining them to others.
                 </p>
 
                 <p className={`text-lg md:text-xl leading-relaxed ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  What drives me is the intersection of design and technology. I believe that great code should 
-                  not only function flawlessly but also provide an exceptional user experience. Every project 
-                  I work on is an opportunity to push the boundaries of what&apos;s possible on the web.
-                </p>
-
-                <p className={`text-lg md:text-xl leading-relaxed ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source 
-                  projects, or sharing my knowledge with the developer community. I&apos;m always eager to take on 
-                  new challenges and collaborate with like-minded individuals who share the same passion for                  creating amazing digital experiences.
+                  Both roles complement each other perfectly - developing real-world applications while sharing 
+                  knowledge through education. This combination has made me a well-rounded professional 
+                  who excels in both technical implementation and knowledge transfer.
                 </p>
               </div>
             </motion.div>
