@@ -104,43 +104,28 @@ const Techniques = () => {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
               variants={itemVariants}
             >
-              {row.map((technique, techIndex) => (
-                <motion.div
+              {row.map((technique, techIndex) => (                <motion.div
                   key={techIndex}
-                  className={`group relative p-6 rounded-xl border transition-all duration-300 hover:scale-105 cursor-pointer ${
+                  className={`group relative p-6 rounded-xl border transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer ${
                     theme === 'dark'
-                      ? 'bg-gray-900/60 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 hover:border-blue-500/50'
-                      : 'bg-white/80 border-gray-200/60 backdrop-blur-sm hover:bg-white hover:border-blue-300/50 shadow-lg hover:shadow-xl'
+                      ? 'bg-gray-900/60 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/80 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                      : 'bg-white/80 border-gray-200/60 backdrop-blur-sm hover:bg-white hover:border-blue-300/70 shadow-lg hover:shadow-blue-200/30'
                   }`}
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.05,
-                    transition: { duration: 0.2 } 
+                    y: -5,
+                    transition: { duration: 0.3, ease: "easeOut" } 
                   }}
                   whileTap={{ scale: 0.95 }}
-                >
-                  {/* Technique Name */}
+                >                  {/* Technique Name */}
                   <div className="text-center">
                     <h3 className={`text-lg md:text-xl font-semibold ${
                       theme === 'dark' ? 'text-white' : 'text-gray-900'
                     } group-hover:${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} transition-colors duration-300`}>
                       {technique}
                     </h3>
-                    
-                    {/* Underline Effect */}
-                    <div className={`mt-3 h-0.5 bg-gradient-to-r transition-all duration-300 group-hover:w-full w-0 mx-auto ${
-                      theme === 'dark'
-                        ? 'from-blue-400 to-purple-500'
-                        : 'from-blue-500 to-purple-600'
-                    }`} />
                   </div>
-
-                  {/* Hover Glow Effect */}
-                  <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
-                    theme === 'dark'
-                      ? 'bg-gradient-to-r from-blue-400/20 to-purple-500/20'
-                      : 'bg-gradient-to-r from-blue-500/20 to-purple-600/20'
-                  }`} />
                 </motion.div>
               ))}
             </motion.div>

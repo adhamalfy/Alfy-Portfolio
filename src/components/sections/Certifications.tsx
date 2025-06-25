@@ -107,20 +107,21 @@ const Certifications = () => {
 
         {/* Certifications Grid */}
         <div className="space-y-8">
-          {certifications.map((cert, index) => (
-            <motion.div
+          {certifications.map((cert, index) => (            <motion.div
               key={index}
-              className={`group relative p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02] ${
+              className={`group relative p-8 rounded-2xl border transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl ${
                 theme === 'dark'
-                  ? 'bg-gray-900/60 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 hover:border-blue-500/50'
-                  : 'bg-white/80 border-gray-200/60 backdrop-blur-sm hover:bg-white hover:border-blue-300/50 shadow-lg hover:shadow-xl'
+                  ? 'bg-gray-900/60 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/80 hover:border-blue-500/70 hover:shadow-blue-500/20'
+                  : 'bg-white/80 border-gray-200/60 backdrop-blur-sm hover:bg-white hover:border-blue-300/70 shadow-lg hover:shadow-blue-200/30'
               }`}
               variants={itemVariants}
               whileHover={{ 
                 scale: 1.02,
-                transition: { duration: 0.2 } 
+                y: -5,
+                transition: { duration: 0.3, ease: "easeOut" } 
               }}
-            >              <div className="flex flex-col space-y-4">
+              whileTap={{ scale: 0.98 }}
+            ><div className="flex flex-col space-y-4">
                 {/* Certificate Title */}
                 <h3 className={`text-xl md:text-2xl font-semibold ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
@@ -141,16 +142,8 @@ const Certifications = () => {
                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                   }`}>
                     {cert.organization}
-                  </div>
-                )}
+                  </div>                )}
               </div>
-
-              {/* Hover Effect Line */}
-              <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r transition-all duration-300 group-hover:w-full w-0 ${
-                theme === 'dark'
-                  ? 'from-blue-400 to-purple-500'
-                  : 'from-blue-500 to-purple-600'
-              }`} />
             </motion.div>
           ))}
         </div>
