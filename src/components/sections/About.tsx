@@ -206,65 +206,24 @@ const ExperienceTimeline = () => {
           : '0 4px 20px rgba(59, 130, 246, 0.3)'
       }}>
         Experience
-      </h3>
-
-      {/* Larger Timeline Container */}
+      </h3>      {/* Timeline Container */}
       <div className="flex flex-col items-center w-full" ref={ref}>
-        {/* Company Logo/Circle - larger and matching Hero colors */}
-        <motion.div
-          className="relative z-10 mb-12"
-          initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : { scale: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className={`w-24 h-24 rounded-full border-4 flex items-center justify-center shadow-2xl ${
-            theme === 'dark'
-              ? 'bg-gray-900/95 border-blue-400 shadow-blue-400/20'
-              : 'bg-white border-blue-500 shadow-blue-500/20'
-          }`}>
-            <motion.div 
-              className={`w-12 h-12 rounded-full ${
-                theme === 'dark' ? 'bg-blue-400' : 'bg-blue-500'
-              }`}
-              animate={isInView ? { rotate: 360 } : { rotate: 0 }}
-              transition={{ 
-                duration: 2, 
-                delay: 1,
-                ease: "easeInOut"
-              }}
-              style={{
-                boxShadow: theme === 'dark' 
-                  ? '0 0 20px rgba(59, 130, 246, 0.6)' 
-                  : '0 0 20px rgba(59, 130, 246, 0.4)'
-              }}
-            />
-          </div>
-        </motion.div>        {/* Dual Timeline Container - Two tubes side by side */}
-        <div className="relative flex flex-row items-start justify-center gap-8">
+        {/* Dual Timeline Container - Two tubes side by side */}
+        <div className="relative flex flex-row items-start justify-center gap-12 md:gap-16">
           
           {/* Avnology Timeline */}
           <div className="flex flex-col items-center">
-            {/* Avnology Header */}
+            {/* Start Date at top */}
             <motion.div
-              className="text-center mb-8"
+              className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
             >
-              <h4 className={`text-xl md:text-2xl font-bold ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
-                Avnology
-              </h4>
-              <p className={`text-sm font-medium ${
+              <p className={`text-lg font-semibold ${
                 theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
               }`}>
-                March 2025 - Present
-              </p>
-              <p className={`text-xs mt-1 ${
-                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-              }`}>
-                Frontend Developer
+                March 2025
               </p>
             </motion.div>
 
@@ -354,31 +313,45 @@ const ExperienceTimeline = () => {
                 </div>
               </motion.div>
             </div>
+
+            {/* End Date and Company Info at bottom */}
+            <motion.div
+              className="text-center mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+            >
+              <p className={`text-lg font-semibold mb-3 ${
+                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+              }`}>
+                Present
+              </p>
+              <h4 className={`text-xl md:text-2xl font-bold mb-2 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Avnology
+              </h4>
+              <p className={`text-sm ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                Frontend Developer
+              </p>
+            </motion.div>
           </div>
 
           {/* Black Horse Timeline */}
           <div className="flex flex-col items-center">
-            {/* Black Horse Header */}
+            {/* Start Date at top */}
             <motion.div
-              className="text-center mb-8"
+              className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
             >
-              <h4 className={`text-xl md:text-2xl font-bold ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              <p className={`text-lg font-semibold ${
+                theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
               }`}>
-                Black Horse
-              </h4>
-              <p className={`text-sm font-medium ${
-                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-              }`}>
-                July 2024 - Present
-              </p>
-              <p className={`text-xs mt-1 ${
-                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-              }`}>
-                Frontend Instructor
+                July 2024
               </p>
             </motion.div>
 
@@ -466,6 +439,30 @@ const ExperienceTimeline = () => {
                 </div>
               </motion.div>
             </div>
+
+            {/* End Date and Company Info at bottom */}
+            <motion.div
+              className="text-center mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 1.7 }}
+            >
+              <p className={`text-lg font-semibold mb-3 ${
+                theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
+              }`}>
+                Present
+              </p>
+              <h4 className={`text-xl md:text-2xl font-bold mb-2 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Black Horse
+              </h4>
+              <p className={`text-sm ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                Frontend Instructor
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
