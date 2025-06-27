@@ -48,7 +48,7 @@ const Hero = () => {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-screen py-8 lg:py-0">
             {/* Left Side - Profile Image with Floating Text */}
           <motion.div 
-            className="relative flex justify-center lg:justify-start order-2 lg:order-1"
+            className="relative flex justify-center lg:justify-start order-1 lg:order-1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -110,7 +110,7 @@ const Hero = () => {
 
           {/* Right Side - Code Box with All Text */}
           <motion.div 
-            className="relative w-full order-1 lg:order-2"
+            className="relative w-full order-2 lg:order-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
