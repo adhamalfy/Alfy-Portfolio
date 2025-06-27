@@ -260,3 +260,27 @@ body {
     transform: translate(24px, 0);
   }
 }
+
+/* Responsive card heights */
+.h-72 {
+  height: 18rem; /* 288px */
+}
+
+.h-88 {
+  height: 22rem; /* 352px */
+}
+
+@media (min-width: 640px) {
+  .sm\:h-80 {
+    height: 20rem; /* 320px */
+  }
+  .sm\:h-88 {
+    height: 22rem; /* 352px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:h-96 {
+    height: 24rem; /* 384px */
+  }
+}
