@@ -22,8 +22,8 @@ const Hero = () => {
         const centerY = rect.top + rect.height / 2;
         
         setMousePosition({
-          x: (e.clientX - centerX) * 0.01,
-          y: (e.clientY - centerY) * 0.01
+          x: (e.clientX - centerX) * 0.1,
+          y: (e.clientY - centerY) * 0.1
         });
       }
     };
