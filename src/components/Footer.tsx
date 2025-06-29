@@ -9,8 +9,8 @@ const Footer: React.FC = () => {
     <footer
       className={`w-full text-center py-4 text-gray-700 text-base relative transition-all duration-500 ${
         theme === "dark"
-          ? "bg-[#0F1419] text-gray-300 border-t border-[#23272e]"
-          : "bg-white text-gray-700 border-t border-gray-200"
+          ? "bg-[#0F1419] text-gray-300"
+          : "bg-white text-gray-700"
       }`}
     >
       © {year} Adham Elalfy. All rights reserved.
