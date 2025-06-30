@@ -56,7 +56,19 @@ const Projects = () => {
         </div>
 
         {/* Playing Cards Layout */}
-        <div className="relative h-[350px] sm:h-[450px] lg:h-[500px] w-full max-w-none flex justify-center items-center px-4 overflow-y-auto overflow-x-hidden">
+        <div
+          className="relative h-[350px] sm:h-[450px] lg:h-[500px] w-full max-w-none flex justify-center items-center px-4 overflow-y-auto"
+          style={{
+            scrollbarWidth: "none", // لـ Firefox
+            msOverflowStyle: "none", // لـ IE و Edge
+          }}
+        >
+          {/* إخفاء الـ scrollbar في Chrome و Safari */}
+          <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
           <AnimatePresence mode="wait">
             {selectedProject === null ? (
               // Cards Scattered Layout
