@@ -8,7 +8,6 @@ const Techniques = () => {
   const { theme } = useTheme();
   const techniquesRef = useRef(null);
   
-  // Add scroll-based animation
   const { scrollYProgress } = useScroll({
     target: techniquesRef,
     offset: ["start end", "end start"]
@@ -39,15 +38,10 @@ const Techniques = () => {
   };
 
   const techniques = [
-    // Row 1
     ["HTML", "CSS", "JavaScript", "React"],
-    // Row 2
     ["Node.js", "Express", "MongoDB", "Git"],
-    // Row 3
     ["Tailwind CSS", "GSAP", "Next.js", "TypeScript"],
-    // Row 4
     ["Redux", "RESTful APIs", "Sass", "Jest"],
-    // Row 5
     ["Supabase"]
   ];
 
@@ -69,7 +63,6 @@ const Techniques = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute inset-0 ${
           theme === 'dark' 
@@ -79,7 +72,6 @@ const Techniques = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
         <motion.div 
           className="text-center mb-16"
           variants={itemVariants}
@@ -96,7 +88,6 @@ const Techniques = () => {
           }`} />
         </motion.div>
 
-        {/* Techniques Grid */}
         <div className="space-y-8">
           {techniques.map((row, rowIndex) => (
             <motion.div
@@ -118,8 +109,7 @@ const Techniques = () => {
                     transition: { duration: 0.3, ease: "easeOut" } 
                   }}
                   whileTap={{ scale: 0.95 }}
-                >                  {/* Technique Name */}
-                  <div className="text-center">
+                >                  <div className="text-center">
                     <h3 className={`text-lg md:text-xl font-semibold ${
                       theme === 'dark' ? 'text-white' : 'text-gray-900'
                     } group-hover:${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} transition-colors duration-300`}>

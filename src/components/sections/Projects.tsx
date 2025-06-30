@@ -37,7 +37,6 @@ const Projects = () => {
       } min-h-screen w-full flex flex-col justify-center items-center`}
     >
       <div className="w-full max-w-full flex flex-col justify-center items-center">
-        {/* Header */}
         <div className="text-center mb-6">
           <h2
             className={`text-4xl font-bold mb-2 ${
@@ -55,15 +54,13 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Playing Cards Layout */}
         <div
           className="relative h-[350px] sm:h-[450px] lg:h-[500px] w-full max-w-none flex justify-center items-center px-4 overflow-y-auto"
           style={{
-            scrollbarWidth: "none", // لـ Firefox
-            msOverflowStyle: "none", // لـ IE و Edge
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
           }}
         >
-          {/* إخفاء الـ scrollbar في Chrome و Safari */}
           <style jsx>{`
             div::-webkit-scrollbar {
               display: none;
@@ -71,7 +68,6 @@ const Projects = () => {
           `}</style>
           <AnimatePresence mode="wait">
             {selectedProject === null ? (
-              // Cards Scattered Layout
               <motion.div
                 key="cards-scattered"
                 initial={{ opacity: 0 }}
@@ -128,8 +124,8 @@ const Projects = () => {
                       style={{
                         left: "50%",
                         top: "50%",
-                        marginLeft: "-112px", // w-56 = 224px / 2 = 112px
-                        marginTop: "-144px", // h-72 = 288px / 2 = 144px
+                        marginLeft: "-112px",
+                        marginTop: "-144px",
                         transformOrigin: "center center",
                         zIndex: 10 + index,
                         boxShadow: theme === "dark"
@@ -137,7 +133,6 @@ const Projects = () => {
                           : "0 25px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1)",
                       }}
                     >
-                      {/* Card Corner */}
                       <div className="absolute top-4 left-4">
                         <div
                           className={`text-xl font-bold ${
@@ -155,7 +150,6 @@ const Projects = () => {
                         </div>
                       </div>
 
-                      {/* Card Center */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-3 sm:p-4 lg:p-6 text-center">
                         <div
                           className={`text-5xl sm:text-6xl lg:text-7xl mb-2 sm:mb-3 ${
@@ -180,7 +174,6 @@ const Projects = () => {
                         </p>
                       </div>
 
-                      {/* Card Corner (Bottom Right - Rotated) */}
                       <div className="absolute bottom-4 right-4 transform rotate-180">
                         <div
                           className={`text-xl font-bold ${
@@ -198,7 +191,6 @@ const Projects = () => {
                         </div>
                       </div>
 
-                      {/* Card Pattern Background */}
                       <div className="absolute inset-0 opacity-5 pointer-events-none">
                         <div className="grid grid-cols-6 grid-rows-8 h-full w-full gap-1 p-4">
                           {Array.from({ length: 48 }).map((_, i) => (
@@ -214,14 +206,12 @@ const Projects = () => {
                         </div>
                       </div>
 
-                      {/* Card Border Accent */}
                       <div className="absolute inset-2 rounded-xl border border-white/10 pointer-events-none"></div>
                     </motion.div>
                   );
                 })}
               </motion.div>
             ) : (
-              // Selected Card with Others Stacked Below
               <motion.div
                 key="selected-card"
                 initial={{ opacity: 0 }}
@@ -229,7 +219,6 @@ const Projects = () => {
                 exit={{ opacity: 0 }}
                 className="w-full flex flex-col items-center justify-center"
               >
-                {/* Main Selected Card */}
                 <motion.div
                   initial={{ scale: 0.8, y: 30, opacity: 0 }}
                   animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -243,11 +232,10 @@ const Projects = () => {
                     boxShadow: theme === "dark"
                       ? "0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)"
                       : "0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1)",
-                    position: "relative", // Changed to relative
+                    position: "relative",
                     zIndex: 10,
                   }}
                 >
-                  {/* Close Button */}
                   <button
                     onClick={() => setSelectedProject(null)}
                     className={`absolute -top-3 -right-3 z-20 w-10 h-10 rounded-full transition-all duration-200 flex items-center justify-center ${
@@ -259,7 +247,6 @@ const Projects = () => {
                     <X size={18} />
                   </button>
 
-                  {/* Card Corner */}
                   <div className="absolute top-4 left-4">
                     <div
                       className={`text-xl font-bold ${
@@ -277,7 +264,6 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  {/* Card Center Content */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-3 sm:p-4 lg:p-6 text-center">
                     <div
                       className={`text-5xl sm:text-6xl lg:text-7xl mb-2 sm:mb-3 ${
@@ -305,7 +291,6 @@ const Projects = () => {
                         : ""}
                     </p>
 
-                    {/* Technologies */}
                     <div className="flex flex-wrap gap-1 sm:gap-2 justify-center mb-2 sm:mb-3">
                       {selectedProject !== null &&
                         projects[selectedProject].technologies
@@ -324,7 +309,6 @@ const Projects = () => {
                           ))}
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="flex flex-col gap-2 w-full px-2 sm:px-4">
                       <a
                         href={
@@ -359,7 +343,6 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  {/* Card Corner (Bottom Right - Rotated) */}
                   <div className="absolute bottom-4 right-4 transform rotate-180">
                     <div
                       className={`text-xl font-bold ${
@@ -377,10 +360,8 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  {/* Card Border Accent */}
                   <div className="absolute inset-2 rounded-xl border border-white/10 pointer-events-none"></div>
 
-                  {/* Card Pattern Background */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <div className="grid grid-cols-6 grid-rows-8 h-full w-full gap-1 p-4">
                       {Array.from({ length: 48 }).map((_, i) => (
@@ -397,7 +378,6 @@ const Projects = () => {
                   </div>
                 </motion.div>
 
-                {/* Other Cards Stacked Below */}
                 <div className="relative">
                   {projects.map((project, index) => {
                     if (index === selectedProject) return null;
@@ -438,7 +418,6 @@ const Projects = () => {
                           backdropFilter: "blur(1px)",
                         }}
                       >
-                        {/* Simplified Card Content */}
                         <div className="absolute top-4 left-4 z-10">
                           <div
                             className={`text-lg font-bold ${

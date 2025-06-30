@@ -13,7 +13,6 @@ const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { theme } = useTheme();
 
-  // Track mouse movement for text animation
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (imageRef.current) {
@@ -46,15 +45,12 @@ const Hero = () => {
     >
       <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center min-h-screen py-8 lg:py-0">
-            {/* Left Side - Profile Image with Floating Text */}
           <motion.div 
             className="relative flex justify-center lg:justify-start order-1 lg:order-1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-          >            {/* Profile Image with floating text around it */}
-            <div className="relative w-full max-w-xs sm:max-w-sm" ref={imageRef}>
-                {/* Floating Text - "Adham" at top-left */}
+          >            <div className="relative w-full max-w-xs sm:max-w-sm" ref={imageRef}>
               <motion.div
                 className={`absolute -top-8 -left-12 text-4xl sm:text-5xl font-extrabold pointer-events-none select-none ${
                   theme === 'dark' ? 'text-blue-400' : 'text-blue-500'
@@ -71,7 +67,6 @@ const Hero = () => {
                 Adham
               </motion.div>
 
-              {/* Floating Text - "Elalfy" at bottom-right */}
               <motion.div
                 className={`absolute -bottom-8 -right-12 text-4xl sm:text-5xl font-extrabold pointer-events-none select-none ${
                   theme === 'dark' ? 'text-blue-400' : 'text-blue-500'
@@ -96,7 +91,6 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                {/* Your actual image */}
                 <Image 
                   src="/assets/hero/me.png" 
                   alt="Adham Elalfy - Frontend Developer"
@@ -108,7 +102,6 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right Side - Code Box with All Text */}
           <motion.div 
             className="relative w-full order-2 lg:order-2"
             initial={{ opacity: 0, y: 30 }}
@@ -121,7 +114,7 @@ const Hero = () => {
                   : 'bg-white/90 border-slate-300/60 shadow-xl shadow-blue-100/20'
               }`}
             >
-              {/* Code Editor Header */}              <div className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b ${
+              <div className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b ${
                 theme === 'dark'
                   ? 'bg-gray-800/60 border-gray-600/50'
                   : 'bg-slate-100/80 border-slate-300/60'
@@ -143,8 +136,7 @@ const Hero = () => {
                 }`}>
                   javascript
                 </div>
-              </div>              {/* Code Content with Personal Info */}
-              <div className={`code-content p-0 relative ${
+              </div>              <div className={`code-content p-0 relative ${
                 theme === 'dark' ? '' : 'bg-white'
               }`}>
                 <div className={theme === 'light' ? 'bg-white' : ''}>

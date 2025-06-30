@@ -14,7 +14,6 @@ const LoadingOverlay = ({ isVisible, onComplete }: LoadingOverlayProps) => {
   
   useEffect(() => {
     if (isVisible) {
-      // بعد 2.5 ثانية ينتهي التحميل
       const timer = setTimeout(() => {
         onComplete();
       }, 2500);
@@ -35,7 +34,6 @@ const LoadingOverlay = ({ isVisible, onComplete }: LoadingOverlayProps) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* حرف الـ A يترسم كأنه بالقلم */}
       <div className="relative">        <motion.svg
           width="160"
           height="160"
@@ -50,7 +48,7 @@ const LoadingOverlay = ({ isVisible, onComplete }: LoadingOverlayProps) => {
             duration: 2.5,
             times: [0, 0.2, 0.6, 1],
             ease: "easeInOut"
-          }}        >{/* الخط الأيسر لحرف A */}
+          }}        >
           <motion.path
             d="M30 90 L60 30"
             stroke={theme === 'dark' ? '#ffffff' : '#000000'}
@@ -67,7 +65,6 @@ const LoadingOverlay = ({ isVisible, onComplete }: LoadingOverlayProps) => {
             }}
           />
           
-          {/* الخط الأيمن لحرف A */}
           <motion.path
             d="M60 30 L90 90"
             stroke={theme === 'dark' ? '#ffffff' : '#000000'}
@@ -83,8 +80,7 @@ const LoadingOverlay = ({ isVisible, onComplete }: LoadingOverlayProps) => {
               delay: 0.5
             }}
           />
-            {/* الخط الأفقي لحرف A */}
-          <motion.path
+            <motion.path
             d="M42 65 L78 65"
             stroke={theme === 'dark' ? '#ffffff' : '#000000'}
             strokeWidth="6"

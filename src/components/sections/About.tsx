@@ -8,13 +8,11 @@ const About = () => {
   const { theme } = useTheme();
   const aboutRef = useRef(null);
   
-  // Add scroll-based animation for the entire About section
   const { scrollYProgress: aboutScrollProgress } = useScroll({
     target: aboutRef,
     offset: ["start end", "end start"]
   });
   
-  // Transform scroll progress to opacity and scale for show/hide effect
   const aboutOpacity = useTransform(aboutScrollProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const aboutScale = useTransform(aboutScrollProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
   const aboutY = useTransform(aboutScrollProgress, [0, 0.2, 0.8, 1], [50, 0, 0, -50]);
@@ -57,7 +55,6 @@ const About = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute inset-0 ${
           theme === 'dark' 
@@ -67,7 +64,6 @@ const About = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
         <motion.div 
           className="text-center mb-16"
           variants={itemVariants}
@@ -87,8 +83,7 @@ const About = () => {
               ? 'bg-gradient-to-r from-blue-400 to-purple-500' 
               : 'bg-gradient-to-r from-blue-500 to-purple-600'
           }`} />
-        </motion.div>        <div className="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center">          {/* Left Side - About Content */}
-          <motion.div 
+        </motion.div>        <div className="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center">          <motion.div 
             className="lg:col-span-3 order-2 lg:order-1"
             variants={itemVariants}
           >
@@ -153,7 +148,7 @@ const About = () => {
                 </p>
               </div>
             </motion.div>
-          </motion.div>{/* Right Side - Experience Timeline */}
+          </motion.div>
           <div className="lg:col-span-2 order-1 lg:order-2">
             <ExperienceTimeline />
           </div>
@@ -163,7 +158,6 @@ const About = () => {
   );
 };
 
-// Experience Timeline Component
 const ExperienceTimeline = () => {
   const { theme } = useTheme();
   const ref = useRef(null);
@@ -171,22 +165,15 @@ const ExperienceTimeline = () => {
   const spinnerRef = useRef(null);
   const containerRef = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
-  // Use scroll-based animation for dynamic tube filling from top to bottom
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"]
   });
-    // Transform scroll progress to tube fill percentage (0% to 100%)
   const tubeProgress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-    // Transform scroll progress to move the spinner from top to bottom with the filling
   const spinnerPosition = useTransform(scrollYProgress, [0, 1], [20, 450]);
+  const spinnerRotation = useTransform(scrollYProgress, [0, 1], [0, 720]);
   
-  // Transform scroll progress to rotate the spinner with scroll
-  const spinnerRotation = useTransform(scrollYProgress, [0, 1], [0, 720]); // 2 full rotations
-  
-  // Remove GSAP animation since we're using scroll-based rotation
   useEffect(() => {
-    // No need for GSAP continuous rotation anymore
   }, [isInView]);
 
   return (
@@ -197,7 +184,6 @@ const ExperienceTimeline = () => {
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
       transition={{ duration: 0.8, delay: 0.2 }}
     >
-      {/* Experience Title - matching Hero section blue colors */}
       <h3 className={`text-3xl md:text-4xl font-bold mb-16 text-center ${
         theme === 'dark' ? 'text-blue-400' : 'text-blue-500'
       }`} style={{
@@ -206,14 +192,10 @@ const ExperienceTimeline = () => {
           : '0 4px 20px rgba(59, 130, 246, 0.3)'
       }}>
         Experience
-      </h3>      {/* Timeline Container */}
-      <div className="flex flex-col items-center w-full" ref={ref}>
-        {/* Dual Timeline Container - Two tubes side by side */}
+      </h3>      <div className="flex flex-col items-center w-full" ref={ref}>
         <div className="relative flex flex-row items-start justify-center gap-12 md:gap-16">
           
-          {/* Avnology Timeline */}
           <div className="flex flex-col items-center">
-            {/* Start Date at top */}
             <motion.div
               className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -227,7 +209,6 @@ const ExperienceTimeline = () => {
               </p>
             </motion.div>
 
-            {/* Avnology Tube */}
             <div 
               ref={tubeRef}
               className={`relative w-20 h-[500px] rounded-full border-4 shadow-2xl overflow-hidden ${
@@ -235,7 +216,6 @@ const ExperienceTimeline = () => {
                   ? 'border-gray-600/80 bg-gray-800/60 shadow-gray-900/50' 
                   : 'border-gray-300 bg-gray-100/60 shadow-gray-300/30'
               }`}>
-              {/* Scroll-based inner filling from top to bottom */}
               <motion.div
                 className={`absolute top-0 left-0 right-0 rounded-full ${
                   theme === 'dark' 
@@ -252,7 +232,6 @@ const ExperienceTimeline = () => {
                 }}
               />
 
-              {/* Spinner for Avnology */}
               <motion.div 
                 ref={spinnerRef}
                 className="absolute w-14 h-14 z-20"
@@ -267,7 +246,6 @@ const ExperienceTimeline = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div className="relative w-full h-full">
-                  {/* Top-right petal */}
                   <div 
                     className="absolute top-0 right-0 w-7 h-7 rounded-tl-full"
                     style={{
@@ -276,7 +254,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(59, 130, 246, 0.8)'
                     }}
                   />
-                  {/* Bottom-right petal */}
                   <div 
                     className="absolute bottom-0 right-0 w-7 h-7 rounded-bl-full"
                     style={{
@@ -285,7 +262,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(139, 92, 246, 0.8)'
                     }}
                   />
-                  {/* Bottom-left petal */}
                   <div 
                     className="absolute bottom-0 left-0 w-7 h-7 rounded-br-full"
                     style={{
@@ -294,7 +270,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(236, 72, 153, 0.8)'
                     }}
                   />
-                  {/* Top-left petal */}
                   <div 
                     className="absolute top-0 left-0 w-7 h-7 rounded-tr-full"
                     style={{
@@ -303,7 +278,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(6, 182, 212, 0.8)'
                     }}
                   />
-                  {/* Center dot */}
                   <div 
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white"
                     style={{
@@ -314,7 +288,6 @@ const ExperienceTimeline = () => {
               </motion.div>
             </div>
 
-            {/* End Date and Company Info at bottom */}
             <motion.div
               className="text-center mt-6"
               initial={{ opacity: 0, y: 20 }}
@@ -339,9 +312,7 @@ const ExperienceTimeline = () => {
             </motion.div>
           </div>
 
-          {/* Black Horse Timeline */}
           <div className="flex flex-col items-center">
-            {/* Start Date at top */}
             <motion.div
               className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -355,14 +326,12 @@ const ExperienceTimeline = () => {
               </p>
             </motion.div>
 
-            {/* Black Horse Tube */}
             <div 
               className={`relative w-20 h-[500px] rounded-full border-4 shadow-2xl overflow-hidden ${
                 theme === 'dark' 
                   ? 'border-gray-600/80 bg-gray-800/60 shadow-gray-900/50' 
                   : 'border-gray-300 bg-gray-100/60 shadow-gray-300/30'
               }`}>
-              {/* Scroll-based inner filling from top to bottom */}
               <motion.div
                 className={`absolute top-0 left-0 right-0 rounded-full ${
                   theme === 'dark' 
@@ -379,7 +348,6 @@ const ExperienceTimeline = () => {
                 }}
               />
 
-              {/* Spinner for Black Horse */}
               <motion.div 
                 className="absolute w-14 h-14 z-20"
                 style={{
@@ -393,7 +361,6 @@ const ExperienceTimeline = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div className="relative w-full h-full">
-                  {/* Top-right petal */}
                   <div 
                     className="absolute top-0 right-0 w-7 h-7 rounded-tl-full"
                     style={{
@@ -402,7 +369,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(139, 92, 246, 0.8)'
                     }}
                   />
-                  {/* Bottom-right petal */}
                   <div 
                     className="absolute bottom-0 right-0 w-7 h-7 rounded-bl-full"
                     style={{
@@ -411,7 +377,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(236, 72, 153, 0.8)'
                     }}
                   />
-                  {/* Bottom-left petal */}
                   <div 
                     className="absolute bottom-0 left-0 w-7 h-7 rounded-br-full"
                     style={{
@@ -420,7 +385,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(6, 182, 212, 0.8)'
                     }}
                   />
-                  {/* Top-left petal */}
                   <div 
                     className="absolute top-0 left-0 w-7 h-7 rounded-tr-full"
                     style={{
@@ -429,7 +393,6 @@ const ExperienceTimeline = () => {
                       boxShadow: '0 0 15px rgba(59, 130, 246, 0.8)'
                     }}
                   />
-                  {/* Center dot */}
                   <div 
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white"
                     style={{
@@ -440,7 +403,6 @@ const ExperienceTimeline = () => {
               </motion.div>
             </div>
 
-            {/* End Date and Company Info at bottom */}
             <motion.div
               className="text-center mt-6"
               initial={{ opacity: 0, y: 20 }}

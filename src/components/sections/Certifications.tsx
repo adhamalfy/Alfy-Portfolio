@@ -8,7 +8,6 @@ const Certifications = () => {
   const { theme } = useTheme();
   const certificationsRef = useRef(null);
   
-  // Add scroll-based animation
   const { scrollYProgress } = useScroll({
     target: certificationsRef,
     offset: ["start end", "end start"]
@@ -78,7 +77,6 @@ const Certifications = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute inset-0 ${
           theme === 'dark' 
@@ -88,7 +86,6 @@ const Certifications = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
         <motion.div 
           className="text-center mb-16"
           variants={itemVariants}
@@ -105,7 +102,6 @@ const Certifications = () => {
           }`} />
         </motion.div>
 
-        {/* Certifications Grid */}
         <div className="space-y-8">
           {certifications.map((cert, index) => (            <motion.div
               key={index}
@@ -122,21 +118,18 @@ const Certifications = () => {
               }}
               whileTap={{ scale: 0.98 }}
             ><div className="flex flex-col space-y-4">
-                {/* Certificate Title */}
                 <h3 className={`text-xl md:text-2xl font-semibold ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
                   {cert.title}
                 </h3>
 
-                {/* Period/Duration */}
                 <div className={`text-lg ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
                 }`}>
                   {cert.period}
                 </div>
 
-                {/* Organization (if exists) */}
                 {cert.organization && (
                   <div className={`text-md font-medium ${
                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'

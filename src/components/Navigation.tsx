@@ -20,7 +20,6 @@ const Navigation = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Update active section based on scroll position
       const sections = ["home", "about", "skills", "projects", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -60,9 +59,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           
-          {/* Empty space for left */}
-          <div className="flex-1"></div>          {/* Desktop Navigation - Centered */}
-          <div className={`hidden md:flex items-center space-x-1 sm:space-x-2 transition-all duration-300 rounded-full px-4 sm:px-6 py-2 sm:py-3 ${
+          <div className="flex-1"></div>          <div className={`hidden md:flex items-center space-x-1 sm:space-x-2 transition-all duration-300 rounded-full px-4 sm:px-6 py-2 sm:py-3 ${
             theme === 'dark' 
               ? (scrolled ? "bg-gray-900/95 backdrop-blur-md border border-gray-700/50 shadow-xl" : "bg-gray-900/80 backdrop-blur-sm border border-gray-700/30 shadow-lg")
               : (scrolled ? "bg-white/98 backdrop-blur-md border border-gray-200/60 shadow-xl" : "bg-white/95 backdrop-blur-sm border border-gray-200/50 shadow-lg")
@@ -87,8 +84,7 @@ const Navigation = () => {
                 {item.name}
               </motion.button>
             ))}          </div>
-            {/* Theme Toggle Button - Right side */}
-          <div className="flex-1 flex justify-end">            <motion.button
+            <div className="flex-1 flex justify-end">            <motion.button
               onClick={toggleTheme}
               className={`p-2 sm:p-3 rounded-lg border transition-all duration-300 shadow-md cursor-pointer ${
                 theme === 'dark' 
@@ -117,8 +113,7 @@ const Navigation = () => {
                 </svg>
               )}</motion.div>
           </motion.button>
-          </div>          {/* Mobile menu button */}
-          <div className="md:hidden">            <motion.button
+          </div>          <div className="md:hidden">            <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className={`focus:outline-none p-2 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center ${
                 theme === 'dark' ? 'text-gray-200 hover:text-white' : 'text-gray-800 hover:text-gray-900'
@@ -149,7 +144,6 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
