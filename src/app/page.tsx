@@ -9,6 +9,7 @@ import Techniques from "@/components/sections/Techniques";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useState, useEffect, useCallback } from "react";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const { theme } = useTheme();
@@ -44,6 +45,7 @@ export default function Home() {
         <Certifications />
         <Techniques />
         <Projects />
+        <Footer />
       </main>
     </>
   );

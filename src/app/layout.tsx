@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import Footer from "@/components/Footer";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           {children}
-          <Footer />
+       
         </ThemeProvider>
       </body>
     </html>
