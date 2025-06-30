@@ -251,10 +251,10 @@ const Projects = () => {
                   <button
                     onClick={() => setSelectedProject(null)}
                     className={`absolute -top-3 -right-3 z-20 w-10 h-10 rounded-full transition-all duration-200 flex items-center justify-center ${
-                      theme === "dark"
-                        ? "bg-red-600 hover:bg-red-700 text-white shadow-lg"
-                        : "bg-red-500 hover:bg-red-600 text-white shadow-lg"
-                    }`}
+                      theme === 'dark' 
+                        ? 'bg-red-600 hover:bg-red-700 text-white shadow-lg' 
+                        : 'bg-red-500 hover:bg-red-600 text-white shadow-lg'
+                    } cursor-pointer`}
                   >
                     <X size={18} />
                   </button>
