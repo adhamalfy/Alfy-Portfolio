@@ -11,7 +11,7 @@ const Navigation = () => {
   const { theme, toggleTheme } = useTheme();  const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
+    { name: "Skills", href: "#techniques" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
@@ -20,7 +20,7 @@ const Navigation = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      const sections = ["home", "about", "skills", "projects", "contact"];
+      const sections = ["home", "about", "techniques", "projects", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {

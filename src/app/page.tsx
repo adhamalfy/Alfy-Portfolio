@@ -6,6 +6,7 @@ import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import Certifications from "@/components/sections/Certifications";
 import Techniques from "@/components/sections/Techniques";
+import Contact from "@/components/sections/Contact";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useState, useEffect, useCallback } from "react";
@@ -45,6 +46,7 @@ export default function Home() {
         <Certifications />
         <Techniques />
         <Projects />
+        <Contact />
         <Footer />
       </main>
     </>
