@@ -1,8 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Send, User, Mail, MessageSquare } from "lucide-react";
+import { User, Mail, MessageSquare } from "lucide-react";
 import { useState } from "react";
+import AnimatedSendButton from "@/components/ui/AnimatedSendButton";
 
 const Contact = () => {
   const { theme } = useTheme();
@@ -22,21 +23,42 @@ const Contact = () => {
     }));
   };
 
+  const handleFormSubmit = async (data: {name: string, email: string, description: string}) => {
+    console.log('handleFormSubmit called with:', data); // Debug log
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log('Response status:', response.status); // Debug log
+      const result = await response.json();
+      console.log('Response result:', result); // Debug log
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", description: "" });
+      } else {
+        setSubmitStatus('error');
+        console.error('Error:', result.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Network error:', error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    // Reset status when starting new submission
     setSubmitStatus('idle');
+    setIsSubmitting(true);
 
-    
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
-      setFormData({ name: "", email: "", description: "" });
-    } catch {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    await handleFormSubmit(formData);
+    setIsSubmitting(false);
   };
 
   return (
@@ -192,62 +214,19 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 }}
+                className="flex justify-center"
               >
-                <button
-                  type="submit"
+                <AnimatedSendButton
+                  onSubmit={handleFormSubmit}
                   disabled={isSubmitting}
-                  className={`w-full py-4 px-6 rounded-lg font-medium text-lg transition-all duration-200 flex items-center justify-center space-x-2 ${
-                    isSubmitting
-                      ? "opacity-70 cursor-not-allowed"
-                      : "hover:scale-105 active:scale-95"
-                  } ${
-                    theme === "dark"
-                      ? "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg"
-                      : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg"
-                  }`}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      <span>Send Message</span>
-                    </>
-                  )}
-                </button>
+                  isSubmitting={isSubmitting}
+                  formData={formData}
+                  submitStatus={submitStatus}
+                  onResetStatus={() => setSubmitStatus('idle')}
+                />
               </motion.div>
 
-             
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className={`text-center p-4 rounded-lg ${
-                    theme === "dark"
-                      ? "bg-green-900/50 border border-green-700 text-green-300"
-                      : "bg-green-100 border border-green-300 text-green-700"
-                  }`}
-                >
-                  ✅ Message sent successfully! I&apos;ll get back to you soon.
-                </motion.div>
-              )}
-
-              {submitStatus === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className={`text-center p-4 rounded-lg ${
-                    theme === "dark"
-                      ? "bg-red-900/50 border border-red-700 text-red-300"
-                      : "bg-red-100 border border-red-300 text-red-700"
-                  }`}
-                >
-                  ❌ Something went wrong. Please try again later.
-                </motion.div>
-              )}
+              {/* Status messages removed - button shows the state */}
             </form>
           </div>
         </motion.div>
@@ -267,12 +246,12 @@ const Contact = () => {
           >
             Or reach out directly at{" "}
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:     elvlfy9@gmail.com"
               className={`font-medium underline ${
                 theme === "dark" ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
               }`}
             >
-              your.email@example.com
+              elvlfy9@gmail.com
             </a>
           </p>
         </motion.div>
